@@ -1,0 +1,16 @@
+name: Example Workflow
+description: example
+inputs:
+  who-to-greet:
+    description: Who to greet in the log
+    required: true
+    default: world
+outputs:
+  time:
+    description: 'The time we said hello.'
+
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.who-to-greet }}
