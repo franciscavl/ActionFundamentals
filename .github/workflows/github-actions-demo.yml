@@ -1,0 +1,29 @@
+name: GitHub Actions Demo
+
+on:
+  push:
+    branches: ["main"]
+    paths-ignore:
+      - '.github/**'
+  pull_request:
+    branches: ["main"]
+  schedule:
+    - cron: '15 6 * * SUN'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Name of event that triggered workflow: ${{ github.event_name }}"
+      - run: |
+          echo "Name of branch: ${{ github.ref }}"
+      - name: List all files in the repository
+        run: echo "The repository ${{ github.repository }} contains the following files:"
+          tree
